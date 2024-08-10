@@ -6,14 +6,13 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load the trained model
-model = load_model('D:\\hackout 2024\\frontend-backend\\cnn_model_3.h5') # will have to give absolute path to model
+model = load_model('D:\\hackout 2024\\frontend-backend\\cnn_model_3.h5') 
 
 
-# Define the class labels (replace with your actual class names)
+
 class_labels = ['Aphids', 'Armyworm', 'Bacterial Blight', 'Healthy', 'Powdery Mildew', 'Target Spot']
 
-# Function to process and predict the image
+
 def prepare_image(image, target_size=(224, 224)):
     if image.mode != "RGB":
         image = image.convert("RGB")
@@ -38,25 +37,25 @@ def predict():
             print("No file selected")
             return jsonify({'error': 'No file selected'}), 400
 
-        # Convert the file to a format that load_img can process
-        image = load_img(io.BytesIO(file.read()))  # Updated line
+
+        image = load_img(io.BytesIO(file.read()))
         
         processed_image = prepare_image(image)
 
-        # Debugging: Print the shape of processed image
+
         print(f"Processed image shape: {processed_image.shape}")
 
-        # Check the model's input shape
+
         print(f"Model input shape: {model.input_shape}")
 
         prediction = model.predict(processed_image)
 
-        # Debugging: Print the raw predictions
+
         print(f"Model prediction: {prediction}")
 
         predicted_index = np.argmax(prediction, axis=1)[0]
 
-        # Debugging: Print the predicted index
+
         print(f"Predicted index: {predicted_index}")
 
         predicted_class = class_labels[predicted_index]
