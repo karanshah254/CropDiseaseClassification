@@ -1,0 +1,2 @@
+Please download model from the given link below and follow the folder structure mentioned in readme to ensure successful execution:
+https://drive.google.com/file/d/1-HSSIyZorx4MPrIIEoWzF89vW8q780KP/view?usp=drive_link
