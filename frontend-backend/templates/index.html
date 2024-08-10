@@ -51,18 +51,21 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Disease Detection</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <div class="container">
-        <h1>Crop Disease Detection</h1>
+        <h1>Crop Disease Detection Portal</h1>
+        <h3>Your one stop solution for detecting and classifying crop diseases</h3>
         <form id="upload-form" onsubmit="event.preventDefault(); uploadImage();">
             <label for="cropImage">Upload Crop Image:</label>
-            <input type="file" id="cropImage" name="image" accept="image/*" required>
+            <input type="file" id="cropImage" name="image" accept="image/*" required><br>
             <button type="submit">Detect Disease</button>
         </form>
         <div id="result">
@@ -78,18 +81,19 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    document.getElementById('result').innerText = data.error;
-                } else {
-                    document.getElementById('result').innerText = 'Result: ' + data.prediction;
-                }
-            })
-            .catch(error => {
-                document.getElementById('result').innerText = 'Error occurred';
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('result').innerText = data.error;
+                    } else {
+                        document.getElementById('result').innerText = 'Result: ' + data.prediction;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('result').innerText = 'Error occurred';
+                });
         }
     </script>
 </body>
+
 </html>
