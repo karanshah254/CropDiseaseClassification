@@ -1,4 +1,5 @@
 import io
+import os
 from flask import Flask, request, jsonify, render_template
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
@@ -6,7 +7,10 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = load_model('D:\\hackout 2024\\frontend-backend\\cnn_model_3.h5') 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, 'cnn_model_3.h5')
+
+model = load_model(model_path) 
 
 
 
